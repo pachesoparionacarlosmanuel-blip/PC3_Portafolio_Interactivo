@@ -1,0 +1,218 @@
+
+/* ========================================
+   1. ESTILOS GENERALES
+======================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7fb;
+    color: #212529;
+}
+
+section {
+    scroll-margin-top: 75px;
+}
+
+.hero-section {
+    padding: 100px 0;
+    color: white;
+    background: linear-gradient(135deg, #172554, #2563eb);
+}
+
+.hero-section p {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-card {
+    border: none;
+    border-radius: 16px;
+    background-color: white;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ========================================
+   2. TRANSFORMACIONES 2D
+======================================== */
+
+/* Tarjeta 1: rotación */
+.rotate-card:hover {
+    transform: rotate(4deg);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.2);
+}
+
+/* Tarjeta 2: escalado */
+.scale-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.25);
+}
+
+/* Tarjeta 3: traslación */
+.translate-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 25px rgba(245, 158, 11, 0.25);
+}
+
+/* ========================================
+   3. TRANSFORMACIÓN 3D
+======================================== */
+
+.perspective-container {
+    width: 100%;
+    max-width: 600px;
+    perspective: 1000px;
+}
+
+.card-3d {
+    min-height: 200px;
+    border: none;
+    border-radius: 18px;
+    color: white;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.card-3d .card-body {
+    transform: translateZ(35px);
+}
+
+.card-3d:hover {
+    transform: rotateX(10deg) rotateY(-15deg);
+}
+
+/* ========================================
+   4. ANIMACIÓN PERSONALIZADA
+======================================== */
+
+.hero-section h1 {
+    animation: aparecer 1.2s ease-out both;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   5. ANIMACIÓN DE CARGA (LOADER)
+======================================== */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+
+    animation: ocultarLoader 0.4s ease 1s forwards;
+    pointer-events: none;
+}
+
+.loader-circle {
+    width: 55px;
+    height: 55px;
+    border: 6px solid #dbeafe;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ocultarLoader {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* ========================================
+   6. FORMULARIO Y BOTONES
+======================================== */
+
+.contact-section {
+    background-color: #e8eef8;
+}
+
+#formContacto {
+    padding: 25px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+#formContacto .form-control {
+    padding: 12px;
+    border-radius: 8px;
+}
+
+#formContacto .btn {
+    padding: 11px 18px;
+    border-radius: 8px;
+}
+
+/* ========================================
+   7. RESPONSIVIDAD
+======================================== */
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 70px 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .perspective-container {
+        padding: 0 12px;
+    }
+
+    .card-3d .card-body {
+        padding: 30px 15px !important;
+    }
+
+    #formContacto {
+        padding: 18px;
+    }
+
+    /* Evitar que las tarjetas salgan de la pantalla */
+    .scale-card:hover {
+        transform: scale(1.03);
+    }
+}
+
+/* Accesibilidad: reducir movimiento si el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
